@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.date{
+  width:70%;
+  /* margin-left: 40px; */
+  /* margin: auto; */
+}
+.conatiner{
+  /* margin: auto; */
+  width: 50%;
+  display: flex;
+flex-direction: row;
+margin: auto;
+margin-top: 70px;
+justify-content: space-between;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  /* justify-content: space-evenly; */
+}
+.table{
+  margin-top: 80px;
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-evenly;
+}
