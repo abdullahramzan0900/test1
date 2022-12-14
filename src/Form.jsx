@@ -16,36 +16,24 @@ function Form() {
   const [array, setArray] = useState([]);
   const [year, setYear] = useState();
   const [sizecake, Setsizecake] = useState("small");
-  const [small,setSmall]=useState(0)
-  const [large,Setlarge]=useState(0)
-  useEffect(() => {}, [array]);
+  const [small, setSmall] = useState(0);
+  const [large, Setlarge] = useState(0);
+  const [check,setCheck]=useState(false);
 
   const [value, setValue] = React.useState(dayjs("2022-12-18T21:11:54"));
   const handleChange1 = (event) => {
     setName(event.target.value);
     console.log(name);
   };
- 
 
   const handleChange = (newValue) => {
     setValue(newValue);
     // console.log("y",moment(newValue).format("LLLL"));
     console.log("date", newValue);
   };
-  function Check() {
-    array?.map((item) => {
-      let x = item.dateofcake;
-      console.log("datofcake", item.dateofcake);
-      array?.map((item2) => {
-        if (item.length > 0 && x === item2.dateofcake) {
-          item2.sizeofcake = "large";
-        }
-      });
-    });
-    setArray(array);
-  }
 
   function addArray() {
+    setCheck(true);
     let day = value.$D;
     const sizeofcake = "small";
     if (value.$W === 5) {
@@ -61,18 +49,12 @@ function Form() {
     }
 
     const k = 2022 - value.$y;
-    //  console.log(value.$y,"ababab");
-    console.log(k, "newyear");
+  
     const g = k + value.$y;
     const min = 1;
     const max = 100;
     const rand = min + Math.random() * (max - min);
-    // console.log(moment( `${value.$D}-${value.$M + 1}-${value.$y}`,).format("MMM Do YY"),"datee");
-    // let a=moment( ` ${value.$M+1} ${value.$D} ${value.$y}`,).format("MMM Do YY");// for dob
-    // console.log(a,"format");
-    // console.log("check",`${value.$M+1}  ${day}  ${value.$y}`)
-    // let b=moment( `${value.$M+1}  ${day}  ${value.$y}`,).format("MMM Do YY");
-    // console.log("format2",b);
+ 
 
     const x = {
       id: rand,
@@ -83,44 +65,54 @@ function Form() {
       dateofcake: moment(`${value.$M + 1} ${day} ${g}`).format("MMM Do YY"),
       sizeofcake: `${sizeofcake}`,
     };
-    array?.map((item) => {
-      let x = item.dateofcake;
-      console.log("datofcake", item.dateofcake);
-      array?.map((item2) => {
-        if (x === item2.dateofcake) {
-          item2.sizeofcake = "large";
-        }
-      });
-      setArray(array);
-    });
-
-    setArray((current) => [...current, x]);
-
-    console.log(x, "aaa");
-    //  const y=  JSON.stringify(value.$d);
-    //  console.log(y,"string")
-    // console.log(value.$d,"sojqd");
     
-    console.log(array);
+    // setArray(array);
+    
+    setArray((current) => [...current, x]);
     function piechart() {
-        let s=0;// for small
-        let l=0; // for large
-        array.map((item) => {
-             if(item.sizeofcake==="large")
-             {
-                  s++;
-                  console.log(s,"s");
-                  setSmall(s)
-             }
-             else {
-              l++;
-              console.log(l,"L")
-              Setlarge(l);
-             }
+            let s=0;// for small
+            let l=0; // for large
+            array.map((item) => {
+                 if(item.sizeofcake==="large")
+                 {
+                      s++;
+                      console.log(s,"s");
+                      setSmall(s)
+                 }
+                 else {
+                  l++;
+                  console.log(l,"L");
+                  Setlarge(l);
+                 }
+            });
+          }
+          piechart()
+
+  
+  }
+
+  let x = [...array];
+  useEffect(() => {
+ 
+    x.map((item, index) => {
+      
+      if (index>0) {
+        array.map((item2, index2) => {
+          console.log(item2.dateofcake, "item2");
+          console.log(item.dateofcake, "item");
+
+          if (index !==index2 && item2.dateofcake === item.dateofcake) {
+            item2.sizeofcake = "large";
+          }
         });
       }
-      piechart()
-  }
+      console.log(x, "array");
+      setArray(array);
+    });
+  }, [array]);
+
+ 
+
   return (
     <>
       <div className="conatiner">
@@ -166,11 +158,20 @@ function Form() {
             }}
             variant="contained"
           >
+            {" "}
             Submit
           </Button>
         </div>
       </div>
-      <Detail array={array} setArray={setArray} small={small} large={large} setSmall={setSmall} Setlarge={Setlarge}/>
+      <Detail
+        array={array}
+        setArray={setArray}
+        small={small}
+        large={large}
+        setSmall={setSmall}
+        Setlarge={Setlarge}
+        check={check}
+      />
     </>
   );
 }

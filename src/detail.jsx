@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { PieChart } from 'react-minimal-pie-chart';
-function Detail({ array, setArray,small,large ,setSmall,Setlarge}) {
+function Detail({ array, setArray,small,large ,setSmall,Setlarge,check}) {
   const columns = [
     {
       field: `name`,
@@ -20,15 +20,15 @@ function Detail({ array, setArray,small,large ,setSmall,Setlarge}) {
       field: "dateofcake",
       headerName: "DateofCake",
       type: "number",
-      width: 230,
+      width: 240,
       editable: true,
     },
     {
       field: "sizeofcake",
       headerName: "SizeofCake",
       description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 230,
+      sortable: true,
+      width: 140,
     },
   ];
 
@@ -38,29 +38,8 @@ function Detail({ array, setArray,small,large ,setSmall,Setlarge}) {
   return (
     <>
       <div className="box">
-        {/* <h4>employee-name</h4>
-      <h4>Date of birth</h4>
-      <h4>Date of cake</h4>
-      <h4>Size of Cake</h4>
-   */}
-
-        {/* {
-     array &&   array?.map((item)=>{
-        return(
-            <>
-     
-            <div className="table">
-             <br></br>
-              <p>{item.name}</p>   
-              <p>{item.date}</p>   
-          
-             
-            </div>
-            </>
-        )
-        })
-      } */}
-        <Box sx={{ height: 400, width: "70%" }}>
+      
+        <Box sx={{ height: 400, width: "60%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -70,21 +49,35 @@ function Detail({ array, setArray,small,large ,setSmall,Setlarge}) {
             getRowId={(rows) => rows.id}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
-          />
+            />
         </Box>
+            </div>
 
-
-        
+{ check &&
+  
+        <div className="piechart">
 <PieChart style={{
-    width:300,
-    marginTop:30
+  width:300,
+  marginTop:30
 }}
-  data={[
-    { title: 'One', value:7, color: 'red' },
-    { title: 'Two', value:small, color: 'blue' }
-  ]}
-/>; 
-      </div>
+data={[
+  { title: 'One', value:large, color: 'red' },
+  { title: 'Two', value:small, color: 'blue' }
+]}
+/>
+<div className="small">
+
+  <p>small  <span class="dot"></span></p>
+
+</div>
+<div className="large">
+
+  <p>large  <span class="dot2"></span></p>
+ 
+</div>
+
+</div>       
+}
     </>
   );
 }

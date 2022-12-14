@@ -38,3 +38,41 @@ justify-content: space-between;
   display: flex;
   justify-content: space-evenly;
 }
+
+.dot {
+   margin-top: 52px;
+
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot2{
+  /* margin-right: 30px;
+  margin-top: 30px; */
+  height: 25px;
+  width: 25px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+}
+.piechart{
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-around; */
+}
+.small{
+  display: flex;
+  margin-top: 50px;
+  margin-left: 20px;
+  
+
+
+}
+.large{
+  display: flex;
+  margin-top: 100px;
+  margin-left: 20px;
+
+}
